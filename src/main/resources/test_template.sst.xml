@@ -1,0 +1,47 @@
+<?xml version = "1.0" encoding = "utf-8"?>
+<workbook xmlns = "http://carbonfive.com/schema/sstemplates">
+
+    <style name = "grid_employee" rowHeight = "325" fontName = "Arial Cyr" fontHeight = "200" valign = "center" border="thin"/>
+    <style name="money" align="right" dataFormat="# ### ### ##0.00" />
+    <sheet name = "Мой xssf"
+           style = "grid_employee"
+           paperSize = "9" zoom = "100" fitHeight = "0" fitWidth = "0"
+           printColumnFrom = "0" printColumnTo = "5"
+           printRowFrom = "0" printRowTo = "40"
+           marginBottom = "1.0" marginTop = "0.5" marginRight = "0.2" marginLeft = "0.7"
+           landscape = "false">
+        <style valign="center" rowHeight = "1000" align="center" border="thin">
+            <row>
+                <style columnWidth="10000" wrapText="true" foreground="black" fillPattern="solid-foreground">
+                    <cell>#C6D7DE</cell>
+                </style>
+                <style columnWidth="8000" wrapText="true" foreground="brown" fillPattern="solid-foreground">
+                    <cell>#378714</cell>
+                </style>
+                <style columnWidth="8000" wrapText="true" foreground="green" fillPattern="solid-foreground">
+                    <cell>#146e87</cell>
+                </style>
+            </row>
+            <row>
+                <style foreground="red" fillPattern="solid-foreground">
+                    <cell>red</cell>
+                </style>
+                <style foreground="blue" fillPattern="solid-foreground">
+                    <cell>blue</cell>
+                </style>
+                <style foreground="yellow" fillPattern="solid-foreground">
+                    <cell>yellow</cell>
+                </style>
+            </row>
+            <row>
+                <style foreground="aqua" fillPattern="solid-foreground">
+                    <cell>aqua</cell>
+                </style>
+                <cell>кастомные</cell>
+                <cell>ячейки</cell>
+            </row>
+        </style>
+
+    </sheet>
+
+</workbook>

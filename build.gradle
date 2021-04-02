@@ -1,0 +1,42 @@
+plugins {
+    id 'java'
+}
+
+group 'com.carbonfive'
+version '1.0'
+
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+
+    // https://mvnrepository.com/artifact/org.apache.poi/poi-ooxml
+    implementation group: 'org.apache.poi', name: 'poi-ooxml', version: '5.0.0'
+
+    // https://mvnrepository.com/artifact/org.apache.commons/commons-lang3
+    implementation group: 'org.apache.commons', name: 'commons-lang3', version: '3.12.0'
+
+    // https://mvnrepository.com/artifact/commons-el/commons-el
+    implementation group: 'commons-el', name: 'commons-el', version: '1.0'
+
+    // https://jar-download.com/artifacts/javax.servlet.jsp/javax.servlet.jsp-api/2.3.1/source-code/javax/servlet/jsp/el/FunctionMapper.java
+    implementation group: 'javax.servlet.jsp', name: 'javax.servlet.jsp-api', version: '2.3.1'
+
+
+    // https://mvnrepository.com/artifact/org.springframework/spring-core
+    implementation group: 'org.springframework', name: 'spring-core', version: '5.3.5'
+
+    // https://mvnrepository.com/artifact/org.springframework/spring-beans
+    implementation group: 'org.springframework', name: 'spring-beans', version: '5.3.5'
+
+    // https://mvnrepository.com/artifact/org.springframework/spring-context
+    implementation group: 'org.springframework', name: 'spring-context', version: '5.3.5'
+
+    // https://mvnrepository.com/artifact/org.apache.commons/commons-digester3
+    implementation group: 'org.apache.commons', name: 'commons-digester3', version: '3.2'
+
+}
