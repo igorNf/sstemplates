@@ -4,6 +4,8 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.apache.poi.hssf.usermodel.HSSFWorkbook;
+import org.apache.poi.hssf.util.HSSFColor;
 import org.apache.poi.ss.usermodel.BorderStyle;
 import org.apache.poi.ss.usermodel.IndexedColors;
 import org.apache.poi.ss.usermodel.Font;
@@ -17,6 +19,7 @@ import org.apache.poi.xssf.usermodel.DefaultIndexedColorMap;
 import com.carbonfive.sstemplates.SsTemplateContext;
 import com.carbonfive.sstemplates.SsTemplateException;
 import com.carbonfive.sstemplates.hssf.StyleData;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 /**
  *
@@ -303,24 +306,28 @@ public class StyleTag extends BaseTag {
             SsTemplateContext context) throws SsTemplateException {
         short[] triplet;
         short index;
+        boolean forOldBook = context.getWorkbook() instanceof HSSFWorkbook;
         String parsedValue = (String) parseExpression(value, String.class, context);
         if (parsedValue.startsWith("#")){
             triplet = parseColor(parsedValue);
-            // Byte[] bytes = {(byte)triplet[0], (byte)triplet[1], (byte)triplet[2]};
-            // index = context.getColorIndex(triplet);
-            // XSSFColor col = new XSSFColor(bytes, null);
-            System.out.println("Кладем значение !!!!!");
-            System.out.println(Arrays.toString(triplet));
-            styleData.put(name, triplet);
+            if (forOldBook) {
+                index = context.getColorIndex(triplet);
+                styleData.put(name, new Integer(index));
+            } else {
+                styleData.put(name, triplet);
+            }
         } else if (colorMap.containsKey(parsedValue)) {
-            index = ((IndexedColors) colorMap.get(parsedValue)).getIndex();
-            styleData.put(name, new Integer(index));
+            HSSFColor color = ((HSSFColor) colorMap.get(parsedValue));
+            if (forOldBook) {
+                triplet = color.getTriplet();
+                index = context.getColorIndex(triplet);
+                styleData.put(name, new Integer(index));
+            } else {
+                styleData.put(name, new Integer(color.getIndex()));
+            }
         }  else {
             throw new SsTemplateException("Can't understand value '" + parsedValue + "' for color '" + name + "'");
         }
-
-        // styleData.put(name, new Integer(index));
-        // styleData.put(name, new Integer(context.getColorIndex(triplet)));
     }
 
     public static short[] parseColor (String value) throws SsTemplateException {
@@ -387,7 +394,8 @@ public class StyleTag extends BaseTag {
     }
 
     private static HashMap getColorAttributeValues () {
-        HashMap<String, IndexedColors> colors = new HashMap();
+        // HashMap<String, IndexedColors> colors = new HashMap();
+        HashMap<String, HSSFColor> colors2 = new HashMap();
         // Class[] colorClasses = HSSFColor.class.getClasses();
         // for (int i = 0; i < colorClasses.length; i++) {
         //     try {
@@ -401,11 +409,15 @@ public class StyleTag extends BaseTag {
         //     }
         // }
 
-        for (IndexedColors color : IndexedColors.values()) {
-            colors.put(color.toString().toLowerCase(), color);
+        for (HSSFColor.HSSFColorPredefined color : HSSFColor.HSSFColorPredefined.values()) {
+            colors2.put(color.toString().toLowerCase(), color.getColor());
         }
 
-        return colors;
+//        for (IndexedColors color : IndexedColors.values()) {
+//            colors.put(color.toString().toLowerCase(), color);
+//        }
+
+        return colors2;
     }
 
     private static String classNameToAttributeValue (Class clazz) {

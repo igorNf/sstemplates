@@ -86,11 +86,11 @@ public interface SsTemplateContext extends VariableResolver, FunctionMapper {
 
     short[] getBackgroundColor ();
 
-    public int getMaxRowIndex ();
+    int getMaxRowIndex ();
 
-    public int getMaxColumnIndex ();
+    int getMaxColumnIndex ();
 
-    public void setPageBreaks (int firstPageBreak, int nextPageBreak);
+    void setPageBreaks (int firstPageBreak, int nextPageBreak);
 
-    public int nextPageBreak (int row);
+    int nextPageBreak (int row);
 }

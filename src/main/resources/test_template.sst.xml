@@ -12,13 +12,13 @@
            landscape = "false">
         <style valign="center" rowHeight = "1000" align="center" border="thin">
             <row>
-                <style columnWidth="10000" wrapText="true" foreground="black" fillPattern="solid-foreground">
+                <style columnWidth="10000" wrapText="true" foreground="#C6D7DE" fillPattern="solid-foreground">
                     <cell>#C6D7DE</cell>
                 </style>
-                <style columnWidth="8000" wrapText="true" foreground="brown" fillPattern="solid-foreground">
+                <style columnWidth="8000" wrapText="true" foreground="#378714" fillPattern="solid-foreground">
                     <cell>#378714</cell>
                 </style>
-                <style columnWidth="8000" wrapText="true" foreground="green" fillPattern="solid-foreground">
+                <style columnWidth="8000" wrapText="true" foreground="#146e87" fillPattern="solid-foreground">
                     <cell>#146e87</cell>
                 </style>
             </row>
@@ -37,7 +37,9 @@
                 <style foreground="aqua" fillPattern="solid-foreground">
                     <cell>aqua</cell>
                 </style>
-                <cell>кастомные</cell>
+                <style foreground="indigo" fillPattern="solid-foreground">
+                    <cell>кастомные</cell>
+                </style>
                 <cell>ячейки</cell>
             </row>
         </style>

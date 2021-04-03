@@ -83,9 +83,6 @@ public class StyleData {
         style.setRightBorderColor(shortFromStyleData("rightBorderColor", style.getRightBorderColor()));
         style.setLeftBorderColor(shortFromStyleData("leftBorderColor", style.getLeftBorderColor()));
 
-
-        System.out.println("============== " + style.getFillForegroundColor());
-        System.out.println("============== " + style.getFillBackgroundColor());
         Object foreground = colorFromStyleData("foreground", style.getFillForegroundColor());
         Object background = colorFromStyleData("background", style.getFillBackgroundColor());
 
@@ -93,27 +90,15 @@ public class StyleData {
             style.setFillForegroundColor(((Integer) foreground).shortValue());
         } else if (foreground instanceof short[]) {
             short[] f = (short[]) foreground;
-            if (style instanceof HSSFCellStyle) {
-                HSSFCellStyle hStyle = (HSSFCellStyle) style;
-                short s = context.getColorIndex((short[]) foreground);
-                hStyle.setFillForegroundColor(s);
-            } else {
-                XSSFCellStyle xStyle = (XSSFCellStyle) style;
-                xStyle.setFillForegroundColor(new XSSFColor(new java.awt.Color(f[0], f[1], f[2]), null));
-            }
+            XSSFCellStyle xStyle = (XSSFCellStyle) style;
+            xStyle.setFillForegroundColor(new XSSFColor(new java.awt.Color(f[0], f[1], f[2]), null));
         }
         if (background instanceof Integer) {
             style.setFillForegroundColor(((Integer) background).shortValue());
         } else if (background instanceof short[]) {
             short[] f = (short[]) background;
-            if (style instanceof HSSFCellStyle) {
-                HSSFCellStyle hStyle = (HSSFCellStyle) style;
-                short s = context.getColorIndex((short[]) background);
-                hStyle.setFillBackgroundColor(s);
-            } else {
-                XSSFCellStyle xStyle = (XSSFCellStyle) style;
-                xStyle.setFillBackgroundColor(new XSSFColor(new java.awt.Color(f[0], f[1], f[2]), null));
-            }
+            XSSFCellStyle xStyle = (XSSFCellStyle) style;
+            xStyle.setFillBackgroundColor(new XSSFColor(new java.awt.Color(f[0], f[1], f[2]), null));
         }
 
         //style.setFillForegroundColor(shortFromStyleData("foreground", style.getFillForegroundColor()));

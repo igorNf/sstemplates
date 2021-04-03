@@ -21,8 +21,9 @@ public class Main {
         FileOutputStream fos = null;
         try {
             byte[] bytes = new Main().makeReport("test_template.sst.xml", map, false);
-
-            fos = new FileOutputStream(new File("/home/nefedov/Documents/test.xlsx"));
+            String fileNameWind = "C:\\Users\\1\\test.xlsx";
+            String fileNameLin = "/home/nefedov/Documents/test.xlsx";
+            fos = new FileOutputStream(new File(fileNameWind));
 
             fos.write(bytes);
         } catch (Exception ex) {
@@ -35,8 +36,8 @@ public class Main {
     byte[] makeReport(String reportName, Map<String, Object> context, boolean toXlsx) throws Exception {
 
         InputStream is = getClass().getClassLoader().getResourceAsStream(reportName);
-        // XssfWorkbookBuilder builder = ReportMapFactoryBean.makeXssfWorkbookBuilder(is);
-        HssfWorkbookBuilder builder = ReportMapFactoryBean.makeHssfWorkbookBuilder(is);
+        XssfWorkbookBuilder builder = ReportMapFactoryBean.makeXssfWorkbookBuilder(is);
+        //HssfWorkbookBuilder builder = ReportMapFactoryBean.makeHssfWorkbookBuilder(is);
 
         Workbook workBook = builder.build(context);
         return getWorkbookBytes(workBook, toXlsx);
